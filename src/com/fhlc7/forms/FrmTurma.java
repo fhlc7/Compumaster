@@ -455,14 +455,11 @@ public class FrmTurma extends JFrame {
 			JOptionPane.showMessageDialog(null, "Selecione uma turma da tabela clicando");
 			return;
 		} else {
-			int id = Integer.valueOf(txtId.getText());
 			if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja deletar esta turma?", getTitle(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				TurmaControle.deletar(turma);
 				atualizar();
 			}
-			
 		}
-		
 	}
 	
 }

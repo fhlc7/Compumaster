@@ -46,6 +46,7 @@ public class FrmCompumaster extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmCompumaster() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCompumaster.class.getResource("/com/sun/java/swing/plaf/windows/icons/HardDrive.gif")));
 		setTitle("Compumaster");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -63,6 +64,25 @@ public class FrmCompumaster extends JFrame {
 			}
 		});
 		mnCadastro.add(mntmAluno);
+		
+		JMenuItem mntmTurma = new JMenuItem("Turma");
+		mntmTurma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new FrmTurma().setVisible(true);
+			}
+		});
+		mnCadastro.add(mntmTurma);
+		
+		JMenu mnMatrcula = new JMenu("Matr\u00EDcula");
+		menuBar.add(mnMatrcula);
+		
+		JMenuItem mntmMatrcula = new JMenuItem("Matr\u00EDcula");
+		mntmMatrcula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new FrmMatricula().setVisible(true);
+			}
+		});
+		mnMatrcula.add(mntmMatrcula);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
