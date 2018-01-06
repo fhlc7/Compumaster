@@ -90,7 +90,7 @@ public class FrmMatricula extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				atualizarTurma();
+				atualizar();
 			}
 		});
 		setResizable(false);
@@ -341,7 +341,7 @@ public class FrmMatricula extends JFrame {
 		}
 	}
 	
-	private void atualizarTurma(){
+	private void atualizar(){
 		limpar();
 		recarregarTabelaTurma();
 		txtProcurarTurma.requestFocus();
@@ -432,6 +432,7 @@ public class FrmMatricula extends JFrame {
 	}
 	
 	private void turmaSelecionada(){
+		selecionarPainel(panelMatricula);
 		int id = retornarId(tableTurma, "Código");
 		turma = TurmaControle.getTurma(id);
 		lblTurma.setText("Turma: " 
@@ -442,7 +443,6 @@ public class FrmMatricula extends JFrame {
 				+ turma.getStatus() + " | "
 				+ (turma.getDataInicio() == null ? "Sem data de Início" : dateFormat.format(turma.getDataInicio().getTime())) + " | "
 				+ (turma.getDataTermino() == null ? "Sem data de Término" : dateFormat.format(turma.getDataTermino().getTime())));
-		selecionarPainel(panelMatricula);
 		recarregarTabelaMatricula(turma);
 	}
 	

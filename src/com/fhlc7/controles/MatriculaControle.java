@@ -22,8 +22,8 @@ public class MatriculaControle {
 				JOptionPane.showMessageDialog(null, "Este aluno já está matriculado nesta turma");
 			} else {
 				dao.inserir(matricula);
-				JOptionPane.showMessageDialog(null, "Aluno matriculado com sucesso");
 				Conexao.commit();
+				JOptionPane.showMessageDialog(null, "Aluno matriculado com sucesso");
 			}
 		} catch (Exception e) {
 			Conexao.rollback();
