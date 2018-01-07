@@ -16,9 +16,22 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import java.awt.Frame;
+import javax.swing.JLabel;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
 
 public class FrmCompumaster extends JFrame {
 
+	private String sobre = "Sistema: Compumaster"
+			+ "\n\nVersão: 1.0 / Atualização: 07/01/2018"
+			+ "\n\nDesenvolvido por: Fabiano Henrique Leitão Coelho"
+			+ "\n\nFone, WhatsApp, Telegram: (99) 98854-8517"
+			+ "\n\nE-mail: fabiano@fhlc7.com"
+			+ "\n\nwww.fhlc7.com";
+	
 	private JPanel contentPane;
 
 	/**
@@ -46,6 +59,7 @@ public class FrmCompumaster extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmCompumaster() {
+		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCompumaster.class.getResource("/com/sun/java/swing/plaf/windows/icons/HardDrive.gif")));
 		setTitle("Compumaster");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,9 +69,11 @@ public class FrmCompumaster extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnCadastro = new JMenu("Cadastro");
+		mnCadastro.setMnemonic('c');
 		menuBar.add(mnCadastro);
 		
 		JMenuItem mntmAluno = new JMenuItem("Aluno");
+		mntmAluno.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 		mntmAluno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new FrmAluno().setVisible(true);
@@ -66,6 +82,7 @@ public class FrmCompumaster extends JFrame {
 		mnCadastro.add(mntmAluno);
 		
 		JMenuItem mntmTurma = new JMenuItem("Turma");
+		mntmTurma.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0));
 		mntmTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new FrmTurma().setVisible(true);
@@ -73,16 +90,70 @@ public class FrmCompumaster extends JFrame {
 		});
 		mnCadastro.add(mntmTurma);
 		
-		JMenu mnMatrcula = new JMenu("Matr\u00EDcula");
-		menuBar.add(mnMatrcula);
+		JMenu mnRegistro = new JMenu("Registro");
+		mnRegistro.setMnemonic('r');
+		menuBar.add(mnRegistro);
 		
 		JMenuItem mntmMatrcula = new JMenuItem("Matr\u00EDcula");
+		mntmMatrcula.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0));
 		mntmMatrcula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new FrmMatricula().setVisible(true);
 			}
 		});
-		mnMatrcula.add(mntmMatrcula);
+		mnRegistro.add(mntmMatrcula);
+		
+		JMenuItem mntmChamada = new JMenuItem("Chamada");
+		mntmChamada.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0));
+		mntmChamada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new FrmChamada().setVisible(true);
+			}
+		});
+		mnRegistro.add(mntmChamada);
+		
+		JMenuItem mntmParcela = new JMenuItem("Parcela");
+		mntmParcela.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0));
+		mnRegistro.add(mntmParcela);
+		
+		JMenu mnConfigurao = new JMenu("Configura\u00E7\u00E3o");
+		mnConfigurao.setMnemonic('o');
+		menuBar.add(mnConfigurao);
+		
+		JMenuItem mntmUsurio = new JMenuItem("Usu\u00E1rio");
+		mntmUsurio.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0));
+		mntmUsurio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new FrmUsuario().setVisible(true);
+			}
+		});
+		mnConfigurao.add(mntmUsurio);
+		
+		JMenu mnAjuda = new JMenu("Ajuda");
+		mnAjuda.setMnemonic('a');
+		menuBar.add(mnAjuda);
+		
+		JMenuItem mntmSobre = new JMenuItem("Sobre");
+		mntmSobre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0));
+		mntmSobre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, sobre);
+			}
+		});
+		mnAjuda.add(mntmSobre);
+		
+		JMenu mnSair = new JMenu("Sair");
+		mnSair.setMnemonic('s');
+		menuBar.add(mnSair);
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0));
+		mntmSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		mnSair.add(mntmSair);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -93,7 +164,7 @@ public class FrmCompumaster extends JFrame {
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 252, Short.MAX_VALUE)
+				.addGap(0, 229, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

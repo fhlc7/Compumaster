@@ -94,7 +94,7 @@ public class FrmMatricula extends JFrame {
 			}
 		});
 		setResizable(false);
-		setTitle("Matr\u00EDculas");
+		setTitle("Matr\u00EDcula");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmMatricula.class.getResource("/com/sun/java/swing/plaf/windows/icons/HardDrive.gif")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(1000, 700);
