@@ -78,6 +78,7 @@ public class FrmChamada extends JFrame {
 	private JButton btnNova;
 	private JButton button_5;
 	private JButton btnAtualizar;
+	private JButton btnAtualizar_1;
 
 	/**
 	 * Launch the application.
@@ -202,7 +203,6 @@ public class FrmChamada extends JFrame {
 		
 		panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		btnVoltar_1 = new JButton("Voltar");
 		btnVoltar_1.addActionListener(new ActionListener() {
@@ -210,6 +210,7 @@ public class FrmChamada extends JFrame {
 				selecionarPainel(panelTurma);
 			}
 		});
+		panel_1.setLayout(new GridLayout(0, 4, 0, 0));
 		btnVoltar_1.setMnemonic('v');
 		panel_1.add(btnVoltar_1);
 		
@@ -219,6 +220,15 @@ public class FrmChamada extends JFrame {
 				nova();
 			}
 		});
+		
+		btnAtualizar_1 = new JButton("Atualizar");
+		btnAtualizar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				recarregarTabelaChamadas(turma);
+			}
+		});
+		btnAtualizar_1.setMnemonic('a');
+		panel_1.add(btnAtualizar_1);
 		btnNova.setMnemonic('n');
 		panel_1.add(btnNova);
 		

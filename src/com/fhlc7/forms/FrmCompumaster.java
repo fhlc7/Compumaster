@@ -22,11 +22,13 @@ import java.awt.Frame;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class FrmCompumaster extends JFrame {
 
 	private String sobre = "Sistema: Compumaster"
-			+ "\n\nVersão: 1.0 / Atualização: 07/01/2018"
+			+ "\n\nVersão: 1.0 / Atualização: 08/01/2018"
 			+ "\n\nDesenvolvido por: Fabiano Henrique Leitão Coelho"
 			+ "\n\nFone, WhatsApp, Telegram: (99) 98854-8517"
 			+ "\n\nE-mail: fabiano@fhlc7.com"
@@ -113,6 +115,11 @@ public class FrmCompumaster extends JFrame {
 		mnRegistro.add(mntmChamada);
 		
 		JMenuItem mntmParcela = new JMenuItem("Parcela");
+		mntmParcela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new FrmParcela().setVisible(true);
+			}
+		});
 		mntmParcela.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0));
 		mnRegistro.add(mntmParcela);
 		
@@ -150,7 +157,7 @@ public class FrmCompumaster extends JFrame {
 		mntmSair.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				System.exit(0);
 			}
 		});
 		mnSair.add(mntmSair);
@@ -168,5 +175,4 @@ public class FrmCompumaster extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
 }

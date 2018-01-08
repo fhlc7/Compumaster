@@ -61,6 +61,7 @@ public class FrmMatricula extends JFrame {
 	private JButton btnVoltar;
 	private JTextField txtProcurarAluno;
 	private JTable tableAluno;
+	private JButton btnAtualizar;
 
 	/**
 	 * Launch the application.
@@ -218,11 +219,23 @@ public class FrmMatricula extends JFrame {
 				voltar();
 			}
 		});
-		panel.setLayout(new GridLayout(0, 2, 0, 0));
+		panel.setLayout(new GridLayout(0, 3, 0, 0));
 		btnVoltar.setMnemonic('v');
 		btnVoltar.setFont(new Font("Calibri", Font.BOLD, 18));
 		btnVoltar.setBackground(Color.GREEN);
 		panel.add(btnVoltar);
+		
+		btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				recarregarTabelaMatricula(turma);
+			}
+		});
+		btnAtualizar.setForeground(Color.WHITE);
+		btnAtualizar.setBackground(Color.BLUE);
+		btnAtualizar.setFont(new Font("Calibri", Font.BOLD, 18));
+		btnAtualizar.setMnemonic('a');
+		panel.add(btnAtualizar);
 		panel.add(btnAdicionar);
 		btnAdicionar.setFont(new Font("Calibri", Font.BOLD, 18));
 		btnAdicionar.setBackground(Color.CYAN);
@@ -406,7 +419,6 @@ public class FrmMatricula extends JFrame {
 		} else if (cmd.equals("remover")){
 			remover();
 		}
-		
 	}
 	
 	private void salvar() {

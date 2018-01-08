@@ -87,4 +87,43 @@ public class MatriculaDAO {
 		ps.close();
 	}
 	
+	public Matricula getMatricula(Aluno aluno, Turma turma) throws SQLException {
+		Matricula matricula = new Matricula();
+		String sql = "SELECT * FROM matricula WHERE idAluno = ? AND idTurma = ?;";
+		PreparedStatement ps = Conexao.conexao.prepareStatement(sql);
+		int i = 0;
+		ps.setInt(++i, aluno.getId());
+		ps.setInt(++i, turma.getId());
+		ResultSet rs = ps.executeQuery();
+		rs.first();
+		i = 0;
+		matricula.setId(rs.getInt(++i));
+		AlunoDAO alunoDAO = new AlunoDAO();
+		matricula.setAluno(aluno);
+		TurmaDAO turmaDAO = new TurmaDAO();
+		matricula.setTurma(turma);
+		rs.close();
+		ps.close();
+		return matricula;
+	}
+
+	public Matricula getMatricula(int id) throws SQLException {
+		Matricula matricula = new Matricula();
+		String sql = "SELECT * FROM matricula WHERE id = ?;";
+		PreparedStatement ps = Conexao.conexao.prepareStatement(sql);
+		int i = 0;
+		ps.setInt(++i, id);
+		ResultSet rs = ps.executeQuery();
+		rs.first();
+		i = 0;
+		matricula.setId(rs.getInt(++i));
+		AlunoDAO alunoDAO = new AlunoDAO();
+		matricula.setAluno(alunoDAO.getAluno(rs.getInt(++i)));
+		TurmaDAO turmaDAO = new TurmaDAO();
+		matricula.setTurma(turmaDAO.getTurma(rs.getInt(++i)));
+		rs.close();
+		ps.close();
+		return matricula;
+	}
+	
 }

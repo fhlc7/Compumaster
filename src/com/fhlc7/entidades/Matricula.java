@@ -2,8 +2,17 @@ package com.fhlc7.entidades;
 
 public class Matricula {
 
+	private int id;
 	private Aluno aluno;
 	private Turma turma;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Aluno getAluno() {
 		return aluno;

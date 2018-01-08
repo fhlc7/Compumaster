@@ -47,7 +47,7 @@ public class ChamadaDAO {
 	
 	public List<Chamada> chamadasDeUmaTurma(Turma turma) throws SQLException{
 		List<Chamada> list = new ArrayList<Chamada>();
-		String sql = "SELECT * FROM chamada WHERE idTurma = ? GROUP BY Data ASC;";
+		String sql = "SELECT *, COUNT(id) FROM chamada WHERE idTurma = ? GROUP BY Data ASC;";
 		PreparedStatement ps = Conexao.conexao.prepareStatement(sql);
 		ps.setInt(1, turma.getId());
 		ResultSet rs = ps.executeQuery();
@@ -63,7 +63,7 @@ public class ChamadaDAO {
 			}
 			chamada.setAluno(new AlunoDAO().getAluno(rs.getInt(++i)));
 			chamada.setTurma(new TurmaDAO().getTurma(rs.getInt(++i)));
-			chamada.setObs(rs.getString(++i));
+			++i; chamada.setObs(rs.getString(++i));
 			list.add(chamada);
 		}
 		rs.close();

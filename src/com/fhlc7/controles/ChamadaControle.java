@@ -34,7 +34,7 @@ public class ChamadaControle {
 	}
 	
 	public static DefaultTableModel defaultTableModelChamadas(Turma turma){
-		DefaultTableModel defaultTableModel = new DefaultTableModel(null, new Object[] {"Nº", "Data"}){
+		DefaultTableModel defaultTableModel = new DefaultTableModel(null, new Object[] {"Nº", "Data", "Quantidade de alunos presentes"}){
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -48,7 +48,8 @@ public class ChamadaControle {
 			for (Chamada chamada : dao.chamadasDeUmaTurma(turma)) {
 				defaultTableModel.addRow(new Object[] {
 					i++,
-					sdf.format(chamada.getData().getTime())	
+					sdf.format(chamada.getData().getTime()),
+					chamada.getObs()
 				});
 			}
 			Conexao.commit();

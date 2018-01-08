@@ -103,4 +103,20 @@ public class MatriculaControle {
 		}
 	}
 	
+	public static Matricula getMatricula(Aluno aluno, Turma turma) {
+		Matricula matricula = new Matricula();
+		try {
+			Conexao.conectar();
+			MatriculaDAO dao = new MatriculaDAO();
+			matricula = dao.getMatricula(aluno, turma);
+			Conexao.commit();
+		} catch (Exception e) {
+			Conexao.rollback();
+			JOptionPane.showMessageDialog(null, "Erro ao tentar retornar matrícula: " + e);
+		} finally {
+			Conexao.desconectar();
+		}
+		return matricula;
+	}
+	
 }

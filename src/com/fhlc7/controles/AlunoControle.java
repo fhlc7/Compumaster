@@ -72,7 +72,7 @@ public class AlunoControle {
 					aluno.getBairro(),
 					aluno.getCidade(),
 					aluno.getEstado(),
-					aluno.getObs()	
+					aluno.getObs()
 				});
 			}
 			Conexao.commit();
