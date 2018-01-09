@@ -22,8 +22,25 @@ import java.awt.Frame;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.JLayeredPane;
+import javax.swing.JDesktopPane;
+import javax.swing.JTextField;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FrmCompumaster extends JFrame {
 
@@ -33,8 +50,13 @@ public class FrmCompumaster extends JFrame {
 			+ "\n\nFone, WhatsApp, Telegram: (99) 98854-8517"
 			+ "\n\nE-mail: fabiano@fhlc7.com"
 			+ "\n\nwww.fhlc7.com";
+	private URL url = getClass().getResource("/com/fhlc7/imagens/tecnologia-informacao.jpg");
+	boolean mudar;
 	
 	private JPanel contentPane;
+	private JLabel lblImagem;
+	private JLayeredPane layeredPane;
+	private JLabel lblCalendar;
 
 	/**
 	 * Launch the application.
@@ -61,6 +83,19 @@ public class FrmCompumaster extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmCompumaster() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				atualizar();
+			}
+		});
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				atualizar();
+				calendar();
+			}
+		});
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCompumaster.class.getResource("/com/sun/java/swing/plaf/windows/icons/HardDrive.gif")));
 		setTitle("Compumaster");
@@ -136,18 +171,18 @@ public class FrmCompumaster extends JFrame {
 		});
 		mnConfigurao.add(mntmUsurio);
 		
-		JMenu mnAjuda = new JMenu("Ajuda");
-		mnAjuda.setMnemonic('a');
-		menuBar.add(mnAjuda);
+		JMenu mnSobre = new JMenu("Sobre");
+		mnSobre.setMnemonic('s');
+		menuBar.add(mnSobre);
 		
-		JMenuItem mntmSobre = new JMenuItem("Sobre");
-		mntmSobre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0));
-		mntmSobre.addActionListener(new ActionListener() {
+		JMenuItem mntmDesenvolvedor = new JMenuItem("Desenvolvedor");
+		mntmDesenvolvedor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0));
+		mntmDesenvolvedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, sobre);
 			}
 		});
-		mnAjuda.add(mntmSobre);
+		mnSobre.add(mntmDesenvolvedor);
 		
 		JMenu mnSair = new JMenu("Sair");
 		mnSair.setMnemonic('s');
@@ -164,15 +199,59 @@ public class FrmCompumaster extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 424, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 229, Short.MAX_VALUE)
-		);
-		contentPane.setLayout(gl_contentPane);
+		
+		lblImagem = new JLabel("Imagem");
+		lblImagem.setBounds(6, 6, 46, 16);
+		lblImagem.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.setLayout(null);
+		
+		layeredPane = new JLayeredPane();
+		layeredPane.setBounds(102, 53, 228, 108);
+		contentPane.add(layeredPane);
+		layeredPane.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		lblCalendar = new JLabel("Calendar");
+		lblCalendar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				mudar = !mudar;
+			}
+		});
+		lblCalendar.setForeground(Color.BLUE);
+		lblCalendar.setFont(new Font("Calibri", Font.BOLD, 99));
+		lblCalendar.setHorizontalAlignment(SwingConstants.CENTER);
+		layeredPane.add(lblCalendar);
+		contentPane.add(lblImagem);
+	}
+	
+	private void atualizar(){
+		lblImagem.setText(null);
+		
+		int d = 8;
+		lblImagem.setBounds(d / 2, d / 2, contentPane.getWidth() - d, contentPane.getHeight() - d);
+		layeredPane.setBounds(d / 2, d / 2, contentPane.getWidth() - d, contentPane.getHeight() - d);
+		
+		ImageIcon image = new ImageIcon(url);
+		ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), Image.SCALE_DEFAULT));
+		lblImagem.setIcon(icon);
+	}
+	
+	private void mudarData(){
+		if (mudar){
+			lblCalendar.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS").format(new Date()));
+		} else {
+			lblCalendar.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
+		}
+	}
+	
+	private void calendar() {
+		new Thread(){
+			@Override
+			public void run() {
+				while (true) {
+					mudarData();
+				}
+			}
+		}.start();
 	}
 }
