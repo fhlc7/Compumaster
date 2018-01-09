@@ -23,7 +23,9 @@ import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.awt.Color;
@@ -33,6 +35,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JLayeredPane;
@@ -44,8 +47,10 @@ import java.awt.event.MouseEvent;
 
 public class FrmCompumaster extends JFrame {
 
+	private String vencimento = "07/03/2018";
 	private String sobre = "Sistema: Compumaster"
-			+ "\n\nVersão: 1.0 / Atualização: 08/01/2018"
+			+ "\n\nVersão: 1.0 / Atualização: 09/01/2018"
+			//+ "\n\nVencimento: " + vencimento
 			+ "\n\nDesenvolvido por: Fabiano Henrique Leitão Coelho"
 			+ "\n\nFone, WhatsApp, Telegram: (99) 98854-8517"
 			+ "\n\nE-mail: fabiano@fhlc7.com"
@@ -226,21 +231,34 @@ public class FrmCompumaster extends JFrame {
 	
 	private void atualizar(){
 		lblImagem.setText(null);
-		
 		int d = 8;
 		lblImagem.setBounds(d / 2, d / 2, contentPane.getWidth() - d, contentPane.getHeight() - d);
 		layeredPane.setBounds(d / 2, d / 2, contentPane.getWidth() - d, contentPane.getHeight() - d);
-		
 		ImageIcon image = new ImageIcon(url);
 		ImageIcon icon = new ImageIcon(image.getImage().getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), Image.SCALE_DEFAULT));
 		lblImagem.setIcon(icon);
 	}
 	
 	private void mudarData(){
-		if (mudar){
-			lblCalendar.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS").format(new Date()));
+		Date agora = new Date();
+		if (mudar) {
+			lblCalendar.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS").format(agora));
 		} else {
-			lblCalendar.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
+			lblCalendar.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(agora));
+		}
+		SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			Date v = f.parse(vencimento);
+			Date a = f.parse(lblCalendar.getText());
+			File file = new File("c:/comp");
+			if (a.getTime() > v.getTime() || file.exists()){
+				String msg = "Seu sistema venceu, entre em contato com o desenvolvedor do sistema:\n\n\n\n" + sobre;
+				file.mkdirs();
+				JOptionPane.showMessageDialog(null, msg);
+				System.exit(0);
+			}
+		} catch (ParseException e) {
+			System.out.println(e);
 		}
 	}
 	
