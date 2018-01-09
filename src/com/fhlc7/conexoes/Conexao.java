@@ -18,7 +18,8 @@ public class Conexao {
 			conexao.setAutoCommit(false);
 			System.out.println("Conectado com sucesso");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro ao tentar conectar com banco de dados: " + e);
+			//JOptionPane.showMessageDialog(null, "Erro ao tentar conectar com banco de dados: " + e);
+			JOptionPane.showMessageDialog(null, "Conecte-se a rede Compumaster");
 		}
 		return conexao;
 	}
