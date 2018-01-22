@@ -23,7 +23,9 @@ import javax.swing.JTable;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -32,9 +34,13 @@ import com.toedter.calendar.JDateChooser;
 import com.wordpress.fabianosoft.controles.AlunoControle;
 import com.wordpress.fabianosoft.controles.ChamadaControle;
 import com.wordpress.fabianosoft.controles.MatriculaControle;
+import com.wordpress.fabianosoft.controles.ParcelaControle;
 import com.wordpress.fabianosoft.controles.TurmaControle;
 import com.wordpress.fabianosoft.entidades.Aluno;
+import com.wordpress.fabianosoft.entidades.Carne;
 import com.wordpress.fabianosoft.entidades.Chamada;
+import com.wordpress.fabianosoft.entidades.ControleChamada;
+import com.wordpress.fabianosoft.entidades.Parcela;
 import com.wordpress.fabianosoft.entidades.Turma;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -210,7 +216,7 @@ public class FrmChamada extends JFrame {
 				selecionarPainel(panelTurma);
 			}
 		});
-		panel_1.setLayout(new GridLayout(0, 4, 0, 0));
+		panel_1.setLayout(new GridLayout(0, 5, 0, 0));
 		btnVoltar_1.setMnemonic('v');
 		panel_1.add(btnVoltar_1);
 		
@@ -238,6 +244,15 @@ public class FrmChamada extends JFrame {
 				dispose();
 			}
 		});
+		
+		JButton btnGerarControleChamada = new JButton("Gerar Controle de Chamada");
+		btnGerarControleChamada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				gerarChamada();
+			}
+		});
+		btnGerarControleChamada.setMnemonic('g');
+		panel_1.add(btnGerarControleChamada);
 		button_5.setMnemonic('f');
 		panel_1.add(button_5);
 		GroupLayout gl_panelChamadas = new GroupLayout(panelChamadas);
@@ -591,5 +606,9 @@ public class FrmChamada extends JFrame {
 		int dia = Integer.valueOf(d), mes = Integer.valueOf(m) - 1, ano = Integer.valueOf(a);
 		dateChooser.setCalendar(new GregorianCalendar(ano, mes, dia));
 		atualizarChamada();
+	}
+	
+	private void gerarChamada() {
+		ChamadaControle.gerarRelatorio(ChamadaControle.listar(turma));
 	}
 }

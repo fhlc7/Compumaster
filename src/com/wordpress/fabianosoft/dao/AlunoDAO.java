@@ -60,7 +60,7 @@ public class AlunoDAO {
 	
 	public List<Aluno> lista(String procurar) throws SQLException{
 		List<Aluno> list = new ArrayList<Aluno>();
-		String sql = "SELECT * FROM Aluno WHERE id LIKE ? OR Nome_Aluno LIKE ? OR Nome_Responsavel LIKE ? ";
+		String sql = "SELECT * FROM Aluno WHERE id LIKE ? OR Nome_Aluno LIKE ? OR Nome_Responsavel LIKE ? ORDER BY Nome_Aluno ASC";
 		PreparedStatement ps = Conexao.conexao.prepareStatement(sql);
 		ps.setString(1, "%" + procurar + "%");
 		ps.setString(2, "%" + procurar + "%");

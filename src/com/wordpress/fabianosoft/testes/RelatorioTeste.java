@@ -1,13 +1,14 @@
 package com.wordpress.fabianosoft.testes;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.fabric.xmlrpc.base.Array;
 import com.wordpress.fabianosoft.entidades.Carne;
 
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -20,7 +21,9 @@ public class RelatorioTeste {
 	public static void main(String[] args) {
 		
 		try {
-			JasperReport report = JasperCompileManager.compileReport("Relatórios/Carnê.jrxml");
+			String endereco = RelatorioTeste.class.getResource("/com/wordpress/fabianosoft/relatorios/Carnê.jrxml").toURI().getPath();
+			System.out.println(endereco);
+			JasperReport report = JasperCompileManager.compileReport(endereco);
 			List<Carne> carnes = new ArrayList<Carne>();
 			Carne carne = new Carne("Maria", "123", "Sábado", "R$ 250,45", "100", "Montagem & Manutenção", "12/12/2019", "13 as 15");
 			carnes.add(carne);
@@ -33,7 +36,7 @@ public class RelatorioTeste {
 			JRDataSource dataSource = new JRBeanCollectionDataSource(carnes);
 			JasperPrint print = JasperFillManager.fillReport(report, null, dataSource);
 			JasperViewer.viewReport(print);
-		} catch (JRException e) {
+		} catch (Exception e) {
 			// TODO Bloco catch gerado automaticamente
 			e.printStackTrace();
 		}

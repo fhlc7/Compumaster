@@ -28,7 +28,7 @@ public class MatriculaDAO {
 	
 	public List<Aluno> alunosMatriculados(Turma turma) throws SQLException{
 		List<Aluno> list = new ArrayList<Aluno>();
-		String sql = "SELECT aluno.* FROM matricula INNER JOIN aluno ON matricula.idAluno = aluno.id WHERE idTurma = ?;";
+		String sql = "SELECT aluno.* FROM matricula INNER JOIN aluno ON matricula.idAluno = aluno.id WHERE idTurma = ? ORDER BY aluno.Nome_Aluno ASC;";
 		PreparedStatement ps = Conexao.conexao.prepareStatement(sql);
 		ps.setInt(1, turma.getId());
 		ResultSet rs = ps.executeQuery();
