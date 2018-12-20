@@ -1,60 +1,55 @@
 package com.fhlc7.forms;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.UIManager;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-
-import java.awt.Frame;
-import javax.swing.JLabel;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyEvent;
-import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.awt.Color;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.JobAttributes;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.io.IOException;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JDesktopPane;
-import javax.swing.JTextField;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+
+import janelas.CalcularJurosJanela;
 
 public class FrmCompumaster extends JFrame {
 
-	private String vencimento = "07/03/2018";
-	private String sobre = "Sistema: Compumaster"
-			+ "\n\nVersão: 1.0 / Atualização: 09/01/2018"
-			//+ "\n\nVencimento: " + vencimento
+	private String vencimento = "07/03/2019";
+	private String sobre = "System: Compumaster"
+			+ "\n\nVersão: 2.1 / Atualização: 20/12/2018"
+			+ "\n\nVencimento: " + vencimento
 			+ "\n\nDesenvolvido por: Fabiano Henrique Leitão Coelho"
 			+ "\n\nFone, WhatsApp, Telegram: (99) 98854-8517"
-			+ "\n\nE-mail: fabiano@fhlc7.com"
-			+ "\n\nwww.fhlc7.com";
+			+ "\n\nE-mail: fhlc037@gmail.com"
+			+ "\n\nwww.fabianosoft.wordpress.com";
 	private URL url = getClass().getResource("/com/fhlc7/imagens/tecnologia-informacao.jpg");
 	boolean mudar;
 	
@@ -163,6 +158,61 @@ public class FrmCompumaster extends JFrame {
 		mntmParcela.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0));
 		mnRegistro.add(mntmParcela);
 		
+		JMenu mnFerramentas = new JMenu("Ferramentas");
+		mnFerramentas.setMnemonic('f');
+		menuBar.add(mnFerramentas);
+		
+		JMenuItem mntmBlocoDeNotas = new JMenuItem("Bloco de Notas");
+		mntmBlocoDeNotas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				executar("notepad");
+			}
+		});
+		mnFerramentas.add(mntmBlocoDeNotas);
+		
+		JMenuItem mntmWordpad = new JMenuItem("WordPad");
+		mntmWordpad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				executar("write");
+			}
+		});
+		mnFerramentas.add(mntmWordpad);
+		
+		JMenuItem mntmPaint = new JMenuItem("Paint");
+		mntmPaint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				executar("mspaint");
+			}
+		});
+		mnFerramentas.add(mntmPaint);
+		
+		JMenuItem mntmCalculadora = new JMenuItem("Calculadora");
+		mntmCalculadora.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				executar("calc");
+			}
+		});
+		mnFerramentas.add(mntmCalculadora);
+		
+		JMenuItem mntmWindowsExplorer = new JMenuItem("Windows Explorer");
+		mntmWindowsExplorer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				executar("explorer");
+			}
+		});
+		mnFerramentas.add(mntmWindowsExplorer);
+		
+		JMenuItem mntmCalcularJuros = new JMenuItem("Calcular Juros");
+		mntmCalcularJuros.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0));
+		mntmCalcularJuros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CalcularJurosJanela cjj = new CalcularJurosJanela();
+				cjj.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				cjj.setVisible(true);
+			}
+		});
+		mnFerramentas.add(mntmCalcularJuros);
+		
 		JMenu mnConfigurao = new JMenu("Configura\u00E7\u00E3o");
 		mnConfigurao.setMnemonic('o');
 		menuBar.add(mnConfigurao);
@@ -194,10 +244,12 @@ public class FrmCompumaster extends JFrame {
 		menuBar.add(mnSair);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
-		mntmSair.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0));
+		mntmSair.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				if (JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja sair do sistema?", "Atenção", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
 		mnSair.add(mntmSair);
@@ -251,7 +303,7 @@ public class FrmCompumaster extends JFrame {
 			Date v = f.parse(vencimento);
 			Date a = f.parse(lblCalendar.getText());
 			File file = new File("c:/comp");
-			if (a.getTime() > v.getTime() || file.exists()){
+			if (a.getTime() > v.getTime() || file.exists()) {
 				String msg = "Seu sistema venceu, entre em contato com o desenvolvedor do sistema:\n\n\n\n" + sobre;
 				file.mkdirs();
 				JOptionPane.showMessageDialog(null, msg);
@@ -272,4 +324,13 @@ public class FrmCompumaster extends JFrame {
 			}
 		}.start();
 	}
+	
+	private void executar(String string) {
+		try {
+			Runtime.getRuntime().exec(string);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, e);
+		}
+	}
+	
 }

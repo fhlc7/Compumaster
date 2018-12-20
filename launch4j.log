@@ -1,0 +1,30 @@
+
+
+Version:	3.10
+CmdLine:	C:\Users\FHLC\Documents\eclipse fhlc7.com\eclipse-workspace\Compumaster\Compumaster.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\FHLC\Documents\eclipse fhlc7.com\eclipse-workspace\Compumaster\.
+Java min ver:	1.8.0_131
+Java max ver:	
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_181
+Check launcher:	C:\Program Files (x86)\Java\jre1.8.0_181\bin\javaw.exe (OK)
+Match:		1.8.0_181
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+32-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_131
+Ignore:		1.8.0_131
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+32-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+32-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.8.0_181 (32-bit)
+Launcher:	C:\Program Files (x86)\Java\jre1.8.0_181\bin\javaw.exe
+Launcher args:	-jar "C:\Users\FHLC\Documents\eclipse fhlc7.com\eclipse-workspace\Compumaster\Compumaster.exe"
+Args length:	94/32768 chars
+Exit code:	0

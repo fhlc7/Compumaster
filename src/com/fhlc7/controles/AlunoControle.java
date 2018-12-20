@@ -32,7 +32,7 @@ public class AlunoControle {
 	
 	public static DefaultTableModel defaultTableModel(String procurar){
 		DefaultTableModel defaultTableModel = new DefaultTableModel(null, new Object[] {
-				"Matrícula",
+				"Matrï¿½cula",
 				"Nome Aluno",
 				"Data de Nascimento",
 				"Nome Responsavel",

@@ -129,7 +129,7 @@ public class FrmLogin extends JFrame {
 		nome = txtUsuario.getText().trim();
 		senha = new String(txtSenha.getPassword());
 		if(nome.isEmpty()){
-			JOptionPane.showMessageDialog(null, "Digite o usuário");
+			JOptionPane.showMessageDialog(null, "Digite o usuï¿½rio");
 			txtUsuario.requestFocus();
 			return;
 		}
@@ -149,14 +149,14 @@ public class FrmLogin extends JFrame {
 			limpar();
 			dispose();
 		} else {
-			//não existe
+			//nï¿½o existe
 			JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto(s)\n\nTente novamente");
 			limpar();
 		}
 	}
 	
 	private void tecladoFormulario(KeyEvent e) {
-		if(e.getKeyCode() == 10) login();// 10 é o código da tecla enter
+		if(e.getKeyCode() == 10) login();// 10 ï¿½ o cï¿½digo da tecla enter
 	}
 	
 	private void limpar(){

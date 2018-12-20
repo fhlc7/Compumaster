@@ -12,8 +12,9 @@ public class Conexao {
 	
 	public static Connection conectar() {
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 			//conexao = DriverManager.getConnection("jdbc:sqlite:dbCompumaster.s3db");
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/Compumaster", "root", "root");
+			conexao = DriverManager.getConnection("jdbc:mysql://localhost/Compumaster2", "root", "1root2");
 			//conexao = DriverManager.getConnection("jdbc:mysql://192.168.1.2/Compumaster", "fhlc", "fhlc123");
 			conexao.setAutoCommit(false);
 			System.out.println("Conectado com sucesso");
