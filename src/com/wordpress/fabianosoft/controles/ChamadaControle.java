@@ -139,6 +139,16 @@ public class ChamadaControle {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			int numero = 0;
 			for (Aluno aluno : dao.alunosMatriculados(turma)) {
+				String fone = " ";
+				if (!aluno.getFone1().equals("(  )      -    ")) {
+					fone += aluno.getFone1();
+				}
+				if (!aluno.getFone2().equals("(  )      -    ")) {
+					fone += " / " + aluno.getFone2();
+				}
+				if (fone.startsWith("  / ")) {
+					fone = fone.replace("  / ", " ");
+				}
 				ControleChamada controleChamada = new ControleChamada(
 						turma.getDiaDaSemana(), 
 						turma.getHorario(), 
@@ -146,7 +156,20 @@ public class ChamadaControle {
 						sdf.format(turma.getDataInicio().getTime()), 
 						sdf.format(turma.getDataTermino().getTime()), 
 						String.valueOf(++numero), 
-						aluno.getId() + ": " + aluno.getNomeAluno());
+						" " + aluno.getId() + ": " + aluno.getNomeAluno(), 
+						fone);
+				lista.add(controleChamada);
+			}
+			for (int i = 0; i < 20 - numero; i++) {
+				ControleChamada controleChamada = new ControleChamada(
+						"", 
+						"", 
+						"", 
+						"", 
+						"", 
+						String.valueOf(i + numero + 1), 
+						"", 
+						"");
 				lista.add(controleChamada);
 			}
 			Conexao.commit();

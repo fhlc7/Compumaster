@@ -3,7 +3,7 @@ package com.wordpress.fabianosoft.entidades;
 public class ControleChamada {
 
 	private String dias, horarios, curso, inicio, termino;
-	private String numero, matriculaNome;
+	private String numero, matriculaNome, fone;
 
 	public ControleChamada() {
 		super();
@@ -11,7 +11,7 @@ public class ControleChamada {
 	}
 
 	public ControleChamada(String dias, String horarios, String curso, String inicio, String termino, String numero,
-			String matriculaNome) {
+			String matriculaNome, String fone) {
 		super();
 		this.dias = dias;
 		this.horarios = horarios;
@@ -20,6 +20,7 @@ public class ControleChamada {
 		this.termino = termino;
 		this.numero = numero;
 		this.matriculaNome = matriculaNome;
+		this.fone = fone;
 	}
 
 	public String getDias() {
@@ -76,6 +77,14 @@ public class ControleChamada {
 
 	public void setMatriculaNome(String matriculaNome) {
 		this.matriculaNome = matriculaNome;
+	}
+
+	public String getFone() {
+		return fone;
+	}
+
+	public void setFone(String fone) {
+		this.fone = fone;
 	}
 
 }
